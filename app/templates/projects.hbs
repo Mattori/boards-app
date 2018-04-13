@@ -1,0 +1,21 @@
+<h2 class="ui header">Projets</h2>
+{{#link-to "projects.new" class="ui button"}}
+  <i class="ui plus icon"></i>
+  Ajouter un projet...
+{{/link-to}}
+<div class="ui divider"></div>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Description</th>
+      <th>Date de début</th>
+      <th>Date de fin</th>
+      <th>Propriétaire</th>
+      <th></th>
+    </tr>
+  </thead>
+  {{projects/listing-project projects=model.projects}}
+</table>
+{{outlet}}
+{{#ui-table newAction='testAddNew' elements=model.projects fields=model.fields operations=model.operations emptyMessage="Aucun projet à afficher"}}{{/ui-table}}

@@ -1,0 +1,42 @@
+<td>
+  <div class="field">
+    <div class="ui input fluid">
+      {{input type='text' value=name placeholder='Nom...'}}
+    </div>
+  </div>
+</td>
+<td>
+  <div class="field">
+    <div class="ui input fluid">
+      {{input type='text' value=description placeholder='Description...'}}
+    </div>
+  </div>
+</td>
+<td>
+  <div class="field">
+    {{ui-calendar type="date" date=model.newProject.startDate onChange=(action (mut model.newProject.startDate)) placeholder="Date de début"}}
+  </div>
+</td>
+<td>
+  <div class="field">
+    {{ui-calendar startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin"}}
+  </div>
+</td>
+<td>
+  {{#power-select
+    selected=owner
+    class='ui input fluid'
+    placeholder='Propriétaire...'
+    options=owners
+    onchange=(action (mut owner))
+    onfocus=(action "handleFocus")
+    as |listOwners|
+  }}
+    {{listOwners}}
+  {{/power-select}}
+</td>
+<td><!-- Bouton d'ajout d'un projet -->
+  <button class="ui right floated button positive" {{action "createProject"}}>
+    <i id="icon-bt-okay" class="icon check circle"></i> Ajouter
+  </button>
+</td>

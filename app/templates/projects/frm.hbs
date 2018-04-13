@@ -1,0 +1,25 @@
+{{#ui-form newValue=model.newProject  oldValue=model.oldProject validation="save" cancel="cancel" bigIcon='table' isNew=model.isNew header='Projet'}}
+  <div class="field">
+    <label for="name">Nom</label>
+    {{input id="name" placeholder="Name" value=model.newProject.name}}
+  </div>
+  <div class="field">
+    <label for="description">Description</label>
+    {{textarea id="description" placeholder="Description" value=model.newProject.description}}
+  </div>
+  <div class="field">
+    <label for="owner">Propriétaire</label>
+    {{multi-select selected=model.idDeveloper name="owner" placeholder="Owner" elements=model.developers selectedElements=model.newProject.owner}}
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label for="startDate">Date de début</label>
+      {{ui-calendar id="startDate" type="date" date=model.newProject.startDate onChange=(action (mut model.newProject.startDate)) placeholder="Date de début"}}
+    </div>
+    <div class="field">
+      <label for="dueDate">Date butoir</label>
+      {{ui-calendar id="dueDate" startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin"}}
+    </div>
+  </div>
+{{/ui-form}}
+{{outlet}}

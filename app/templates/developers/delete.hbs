@@ -1,0 +1,6 @@
+{{#message-confirmation uiClass="negative" param=model cancel='cancelDeletion' action='delete'}}
+  Voulez-vous supprimer le développeur `<b>{{model.identity}}</b>` ?
+  {{#if model.projects.length}}
+    <br><b>{{model.identity}}</b> a {{model.projects.length}} projet(s).
+  {{/if}}
+{{/message-confirmation}}

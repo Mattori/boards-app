@@ -1,0 +1,78 @@
+<h2 class="ui header">
+  <i class="folder open icon"></i>
+  <div class="content">
+    {{model.name}}
+    <div class="sub header">{{model.description}}</div>
+  </div>
+</h2>
+<h3 class="ui header">Développeurs</h3>
+{{#link-to "dev-project.new" model.id class="ui button"}}
+  <i class="ui plus icon"></i>
+  Ajouter un développeur au projet...
+{{/link-to}}
+<div class="ui divider"></div>
+<div class="ui middle aligned divided list">
+  <div class="item">
+    <div class="right floated content">
+      <div class="ui left labeled button" tabindex="0">
+        <a class="ui basic right pointing label">
+          {{model.owner.identity}}
+        </a>
+        <div class="ui button">
+          <i class="user icon"></i> Mettre à jour...
+        </div>
+      </div>
+    </div>
+  </div>
+  {{#each model.developers as |dev|}}
+  <div class="item">
+    <div class="right floated content">
+      <div class="ui left labeled button" tabindex="0">
+        <a class="ui basic right pointing label">
+          {{dev.identity}}
+        </a>
+        <div class="ui button">
+          <i class="user icon"></i> Mettre à jour...
+        </div>
+      </div>
+    </div>
+    <i class="big file middle aligned icon"></i>
+  </div>
+ {{/each}}
+</div>
+<h3 class="ui header">Stories</h3>
+{{#link-to "story.new" model.id class="ui button"}}
+  <i class="ui plus icon"></i>
+  Ajouter une Story au projet...
+{{/link-to}}
+{{#link-to "projects" class="ui button"}}<i class="caret square left icon"></i>Retour aux projets{{/link-to}}
+<div class="ui divider"></div>
+<div class="ui middle aligned divided list">
+  {{#each model.stories as |story|}}
+  <div class="item">
+    <div class="right floated content">
+      <div class="ui left labeled button" tabindex="0">
+        <a class="ui basic right pointing label">
+          {{story.developer.identity}}
+        </a>
+        <div class="ui button">
+          <i class="user icon"></i> Mettre à jour...
+        </div>
+      </div>
+    </div>
+    <i class="big file middle aligned icon"></i>
+    <div class="content">
+      <div class="header">
+        {{story.code}}
+      </div>
+      <div class="description">
+        {{story.description}}
+        {{#each story.tags as |tag|}}
+          <a class="ui {{tag.color}} label">{{tag.title}}</a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+ {{/each}}
+</div>
+{{outlet}}

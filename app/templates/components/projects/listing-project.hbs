@@ -1,0 +1,76 @@
+{{projects/adding-project}}
+{{#each projects as |proj|}}
+  <tr>
+    <td>
+      {{#if proj.edit}}
+        <div class="field">
+          <div class="ui input fluid">
+            {{input type='text' value=proj.name placeholder='Nom...'}}
+          </div>
+        </div>
+      {{else}}
+        {{proj.name}}
+      {{/if}}
+    </td>
+    <td>
+      {{#if proj.edit}}
+        <div class="field">
+          <div class="ui input fluid">
+            {{input type='text' value=proj.description placeholder='Description...'}}
+          </div>
+        </div>
+      {{else}}
+        {{proj.description}}
+      {{/if}}
+    </td>
+    <td>
+      {{#if proj.edit}}
+        <div class="field">
+          {{ui-calendar type="date" date=model.newProject.startDate onChange=(action (mut model.newProject.startDate)) placeholder="Date de début"}}
+        </div>
+      {{else}}
+        {{proj.startDate}}
+      {{/if}}
+    </td>
+    <td>
+      {{#if proj.edit}}
+        <div class="field">
+          {{ui-calendar startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin"}}
+        </div>
+      {{else}}
+        {{proj.dueDate}}
+      {{/if}}
+    </td>
+    <td>
+      {{proj.owner.identity}}
+    </td>
+    <td>
+      {{#if proj.edit}}
+        <button class="ui circular check icon button" {{action "validateEdit" proj}}>
+          <i class="check icon"></i>
+        </button>
+        <button class="ui circular undo icon button" {{action "resetEdit" proj}}>
+          <i class="undo icon"></i>
+        </button>
+      {{else}}
+        {{#link-to "project" proj.id class="ui basic circular eye icon button"}}<i class="ui eye icon"></i>{{/link-to}}
+        {{#bs-button class='btn btn-primary btn-circle btn-sm' onClick=(action "openEdit" proj)}}
+          <i class="fa fa-edit"></i>
+        {{/bs-button}}
+        {{#bs-button class='btn btn-danger btn-circle btn-sm' onClick=(action "openProj" proj)}}
+          <i class="fa fa-remove"></i>
+          {{#bs-popover visible=proj.popvalidate}}
+            Confirmez-vous la suppression de :<br />
+            {{proj.name}} ?
+            {{#bs-button class='btn btn-default btn-xs' onClick=(action "closeProj" proj)}}
+              <i class="fa fa-undo"></i> Annuler
+            {{/bs-button}}
+            {{#bs-button class='btn btn-danger btn-xs' onClick=(action "removeRow" proj)}}
+              <i class="fa fa-check"></i> Confirmer
+            {{/bs-button}}
+          {{/bs-popover}}
+        {{/bs-button}}
+      {{/if}}
+    </td>
+  </tr>
+{{/each}}
