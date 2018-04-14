@@ -36,7 +36,7 @@
   {{/power-select}}
 </td>
 <td><!-- Bouton d'ajout d'un projet -->
-  <button class="ui right floated button positive" {{action "createProject"}}>
-    <i id="icon-bt-okay" class="icon check circle"></i> Ajouter
-  </button>
+  {{#bs-button class='btn btn-success btn-md ecart' onClick=(action "createProject")}}
+    <i class="fa fa-plus"></i> Ajouter
+  {{/bs-button}}
 </td>

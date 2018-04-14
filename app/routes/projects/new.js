@@ -19,8 +19,9 @@ export default Route.extend({
       let idDeveloper = Ember.get(model, 'idDeveloper');
       let dev = Ember.get(model, 'developers').find(dev => dev.id == idDeveloper);
       newProject.set('owner', dev);
-      newProject.save().then(
-        ()=>{this.transitionTo("projects");});
+      newProject.save().then(()=>{
+        this.transitionTo("projects");
+      });
     },
     cancel(){
       this.transitionTo("projects");
