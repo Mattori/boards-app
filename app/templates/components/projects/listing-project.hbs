@@ -64,7 +64,7 @@
           {{#bs-popover visible=proj.popvalidate}}
             Confirmez-vous la suppression de :<br />
             {{proj.name}} ?
-            {{#bs-button class='btn btn-default btn-xs' onClick=(action "closeProj" proj)}}
+            {{#bs-button class='btn btn-default btn-xs ecart' onClick=(action "closeProj" proj)}}
               <i class="fa fa-undo"></i> Annuler
             {{/bs-button}}
             {{#bs-button class='btn btn-danger btn-xs' onClick=(action "removeRow" proj)}}

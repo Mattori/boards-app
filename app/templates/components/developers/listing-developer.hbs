@@ -1,0 +1,16 @@
+{{developers/adding-developer}}
+{{#each developers as |dev|}}
+  <tr>
+    <td>
+      {{dev.identity}}
+    </td>
+    <td>
+      {{dev.identity}}
+    </td>
+    <td>
+      {{#link-to "developer" dev.id class="btn btn-default btn-circle btn-sm"}}
+        <i class="fa fa-eye"></i>
+      {{/link-to}}
+    </td>
+  </tr>
+{{/each}}

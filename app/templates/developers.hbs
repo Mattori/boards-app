@@ -1,8 +1,19 @@
 <h2 class="ui header">Développeurs</h2>
-{{#link-to "developers.new" class="ui button"}}
-  <i class="ui plus icon"></i>
-  Ajouter un developpeur...
+{{#link-to "developers.new" class="btn btn-default"}}
+  <i class="fa fa-plus"></i> Ajouter un developpeur...
 {{/link-to}}
 <div class="ui divider"></div>
+<div class="table-responsive">
+	<table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th class="col-xs-4">Identité</th>
+        <th class="col-xs-4">Email</th>
+        <th class="col-xs-4"></th>
+      </tr>
+    </thead>
+    {{developers/listing-developer developers=model.developers}}
+  </table>
+</div>
 {{outlet}}
 {{#ui-table elements=model.developers fields=model.fields operations=model.operations emptyMessage="Aucun développeur à afficher"}}{{/ui-table}}
