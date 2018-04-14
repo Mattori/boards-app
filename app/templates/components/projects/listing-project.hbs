@@ -53,11 +53,13 @@
           <i class="undo icon"></i>
         </button>
       {{else}}
-        {{#link-to "project" proj.id class="ui basic circular eye icon button"}}<i class="ui eye icon"></i>{{/link-to}}
-        {{#bs-button class='btn btn-primary btn-circle btn-sm' onClick=(action "openEdit" proj)}}
+        {{#link-to "project" proj.id class="btn btn-default btn-circle btn-md"}}
+          <i class="fa fa-eye"></i>
+        {{/link-to}}
+        {{#bs-button class='btn btn-primary btn-circle btn-md ecart' onClick=(action "openEdit" proj)}}
           <i class="fa fa-edit"></i>
         {{/bs-button}}
-        {{#bs-button class='btn btn-danger btn-circle btn-sm' onClick=(action "openProj" proj)}}
+        {{#bs-button class='btn btn-danger btn-circle btn-md' onClick=(action "openProj" proj)}}
           <i class="fa fa-remove"></i>
           {{#bs-popover visible=proj.popvalidate}}
             Confirmez-vous la suppression de :<br />

@@ -16,3 +16,8 @@
     font-size: 12px;
     line-height: 1.42857;
 }
+
+.ecart {
+  margin-left: 2px;
+  margin-right: 2px;
+}
