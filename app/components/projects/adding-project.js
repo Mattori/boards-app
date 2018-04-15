@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { isBlank } from '@ember/utils';
 
 export default Component.extend({
+  notifications: service('notification-messages'),
   store: service(),
   tagName: 'tr',
 
@@ -51,11 +52,21 @@ export default Component.extend({
       if(!getName
       || !getDescription
       ) {
-        console.log("Des données sont vides ! Échec de l'enregistrement !");
+        this.get('notifications').error("Des données sont vides ! Échec !", {
+          autoClear: true,
+          clearDuration: 3000,
+          htmlContent: true
+        });
+        console.log("Des données sont vides ! Échec !");
       } else {
         let newProject = store.createRecord(modelProject, dataProject);
 
         newProject.save().then(() => {
+          this.get('notifications').success("Succès de l'enregistrement.", {
+            autoClear: true,
+            clearDuration: 3000,
+            htmlContent: true
+          });
           console.log('Enregistrement sauvegardé avec succès.');
         });
 
