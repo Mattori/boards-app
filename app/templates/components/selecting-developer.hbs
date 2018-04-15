@@ -1,0 +1,9 @@
+{{#power-select
+  selected=owner
+  placeholder='Propriétaire...'
+  options=owners
+  onchange=(action (mut owner))
+  as |listOwners|
+}}
+  {{listOwners}}
+{{/power-select}}

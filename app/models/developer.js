@@ -6,6 +6,7 @@ export default DS.Model.extend({
   email: DS.attr('string'),
   login: DS.attr('string'),
   password: DS.attr('string'),
+  ownProject: DS.belongsTo('project'),
   projects: DS.hasMany('project',{inverse:'owner'}),
   toString(){
     return this.get('identity');
