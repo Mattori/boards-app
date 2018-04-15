@@ -11,19 +11,28 @@
   Ajouter un développeur au projet...
 {{/link-to}}
 <div class="ui divider"></div>
-<div class="ui middle aligned divided list">
-  <div class="item">
-    <div class="right floated content">
-      <div class="ui left labeled button" tabindex="0">
-        <a class="ui basic right pointing label">
+<div class="table-responsive">
+	<table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th class="col-xs-4">Identité</th>
+        <th class="col-xs-4">Email</th>
+        <th class="col-xs-4"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
           {{model.owner.identity}}
-        </a>
-        <div class="ui button">
-          <i class="user icon"></i> Mettre à jour...
-        </div>
-      </div>
-    </div>
-  </div>
+        </td>
+        <td>
+          {{model.owner.email}}
+        </td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   {{#each model.developers as |dev|}}
   <div class="item">
     <div class="right floated content">
