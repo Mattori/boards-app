@@ -3,22 +3,14 @@
   <tr>
     <td>
       {{#if proj.edit}}
-        <div class="field">
-          <div class="ui input fluid">
-            {{input type='text' value=proj.name placeholder='Nom...'}}
-          </div>
-        </div>
+        {{input type='text' class='form-control' value=proj.name placeholder='Nom...'}}
       {{else}}
         {{proj.name}}
       {{/if}}
     </td>
     <td>
       {{#if proj.edit}}
-        <div class="field">
-          <div class="ui input fluid">
-            {{input type='text' value=proj.description placeholder='Description...'}}
-          </div>
-        </div>
+        {{input type='text' class='form-control' value=proj.description placeholder='Description...'}}
       {{else}}
         {{proj.description}}
       {{/if}}
