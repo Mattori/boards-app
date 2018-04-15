@@ -31,6 +31,8 @@ Router.map(function() {
     this.route('new', {path: 'new/:project_id'});
   });
   this.route('developer',{ path: 'developer/:developer_id' });
+  this.route('registration');
+  this.route('connection');
 });
 
 export default Router;
