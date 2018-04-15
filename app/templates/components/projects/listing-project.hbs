@@ -46,12 +46,12 @@
     </td>
     <td>
       {{#if proj.edit}}
-        <button class="ui circular check icon button" {{action "validateEdit" proj}}>
-          <i class="check icon"></i>
-        </button>
-        <button class="ui circular undo icon button" {{action "resetEdit" proj}}>
-          <i class="undo icon"></i>
-        </button>
+        {{#bs-button class='btn btn-success btn-circle btn-sm ecart' onClick=(action "validateEdit" proj)}}
+          <i class="fa fa-check"></i>
+        {{/bs-button}}
+        {{#bs-button class='btn btn-warning btn-circle btn-sm' onClick=(action "resetEdit" proj)}}
+          <i class="fa fa-undo"></i>
+        {{/bs-button}}
       {{else}}
         {{#link-to "project" proj.id class="btn btn-default btn-circle btn-sm"}}
           <i class="fa fa-eye"></i>

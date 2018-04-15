@@ -3,7 +3,7 @@ import DS from 'ember-data';
 export default DS.JSONSerializer.extend({
   primaryKey: '_id',
   isNewSerializerAPI: true,
-  extractId: function (modelClass, resourceHash) {
+  extractId(modelClass, resourceHash) {
     if(resourceHash._id)
       return (resourceHash._id.$oid || resourceHash._id);
   },
@@ -18,7 +18,7 @@ export default DS.JSONSerializer.extend({
       return this._super(store, primaryModelClass, payload._embedded, id, requestType);
     return this._super(store, primaryModelClass, payload, id, requestType);
   },
-  serializeId (snapshot, json) {
+  serializeId(snapshot, json) {
     let id = snapshot.id;
     json['_id'] = id;
   }

@@ -8,7 +8,7 @@ export default Route.extend({
       projects:this.get('store').findAll('project'),
       owners:this.get('store').findAll('developer'),
       fields:[{name:'name', caption:'Nom'},{name:'description', caption:'Description'},{name:'sDate',caption:'Date de début'},{name:'dDate',caption:'Date butoir'},{name:'owner.identity',caption:'Propriétaire'}],
-      operations:[{icon:'remove red',link:'projects.delete'},{icon:'edit',link:'projects.update'},{icon:'eye',link:'project'}]
+      operations:[{icon:'eye',link:'project'}]
     });
   },
 

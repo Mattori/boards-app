@@ -21,7 +21,7 @@ export default Component.extend({
 
   initialize() {
     this.projs().then((data) => {
-      this.set('projects', data);
+      this.set('projets', data);
     });
   },
 
