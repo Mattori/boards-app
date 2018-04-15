@@ -1,17 +1,51 @@
+<!--
 <div class="ui container">
   <div class="ui secondary menu">
     {{#link-to "index" class="item"}}
-      Accueil
+      <i class="fa fa-home"></i> Accueil
     {{/link-to}}
     {{#link-to "projects" class="item"}}
-      Projets
+      <i class="fa fa-list"></i> Projets
     {{/link-to}}
     {{#link-to "developers" class="item"}}
-      Développeurs
+      <i class="fa fa-user"></i> Développeurs
     {{/link-to}}
     {{#link-to "tags" class="item"}}
-      Tags
+      <i class="fa fa-tag"></i> Tags
     {{/link-to}}
   </div>
+</div>
+-->
+<div class="container">
+  {{#bs-navbar as |navbar|}}
+    <div class="navbar-header">
+      {{navbar.toggle}}
+      <a class="navbar-brand" href="#">Board</a>
+    </div>
+    {{#navbar.content}}
+      {{#navbar.nav as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "index" collapseNavbar=false}}
+            <i class="fa fa-home"></i> Accueil
+          {{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "projects" collapseNavbar=false}}
+            <i class="fa fa-list"></i> Projets
+          {{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "developers" collapseNavbar=false}}
+            <i class="fa fa-user"></i> Développeurs
+          {{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "tags" collapseNavbar=false}}
+            <i class="fa fa-tag"></i> Tags
+          {{/nav.link-to}}
+        {{/nav.item}}
+      {{/navbar.nav}}
+    {{/navbar.content}}
+  {{/bs-navbar}}
   {{outlet}}
 </div>
