@@ -1,3 +1,48 @@
+<div class="container">
+  {{#bs-navbar as |navbar|}}
+    <div class="navbar-header">
+      {{navbar.toggle}}
+      <a class="navbar-brand" href="#">Board</a>
+    </div>
+    {{#navbar.content}}
+      {{#navbar.nav as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "index"}}
+            <i class="fa fa-home"></i> Accueil
+          {{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "projects"}}
+            <i class="fa fa-list"></i> Projets
+          {{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "developers"}}
+            <i class="fa fa-users"></i> Développeurs
+          {{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "tags"}}
+            <i class="fa fa-tag"></i> Tags
+          {{/nav.link-to}}
+        {{/nav.item}}
+      {{/navbar.nav}}
+      {{#navbar.nav class="navbar-right" as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "tags"}}
+            <i class="fa fa-edit"></i> S'inscrire
+          {{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "tags"}}
+            <i class="fa fa-sign-in"></i> Se connecter
+          {{/nav.link-to}}
+        {{/nav.item}}
+      {{/navbar.nav}}
+    {{/navbar.content}}
+  {{/bs-navbar}}
+  {{outlet}}
+</div>
 <!--
 <div class="ui container">
   <div class="ui secondary menu">
@@ -16,36 +61,3 @@
   </div>
 </div>
 -->
-<div class="container">
-  {{#bs-navbar as |navbar|}}
-    <div class="navbar-header">
-      {{navbar.toggle}}
-      <a class="navbar-brand" href="#">Board</a>
-    </div>
-    {{#navbar.content}}
-      {{#navbar.nav as |nav|}}
-        {{#nav.item}}
-          {{#nav.link-to "index" collapseNavbar=false}}
-            <i class="fa fa-home"></i> Accueil
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "projects" collapseNavbar=false}}
-            <i class="fa fa-list"></i> Projets
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "developers" collapseNavbar=false}}
-            <i class="fa fa-user"></i> Développeurs
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tags" collapseNavbar=false}}
-            <i class="fa fa-tag"></i> Tags
-          {{/nav.link-to}}
-        {{/nav.item}}
-      {{/navbar.nav}}
-    {{/navbar.content}}
-  {{/bs-navbar}}
-  {{outlet}}
-</div>
