@@ -1,16 +1,13 @@
-<h2 class="ui header">
-  <i class="folder open icon"></i>
-  <div class="content">
-    {{model.name}}
-    <div class="sub header">{{model.description}}</div>
-  </div>
+<h2>
+  <i class="fa fa-folder-open"></i> {{model.name}}
+  {{model.description}}
 </h2>
-<h3 class="ui header">Développeurs</h3>
+<h3>Développeurs</h3>
 {{#link-to "dev-project.new" model.id class="ui button"}}
-  <i class="ui plus icon"></i>
+  <i class="fa fa-plus"></i>
   Ajouter un développeur au projet...
 {{/link-to}}
-<div class="ui divider"></div>
+<hr />
 <div class="table-responsive">
 	<table class="table table-hover table-bordered">
     <thead>
