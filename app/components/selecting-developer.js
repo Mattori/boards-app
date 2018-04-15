@@ -4,13 +4,6 @@ import { isBlank } from '@ember/utils';
 
 export default Component.extend({
   store: service(),
-  tagName: 'tr',
-
-  name: undefined,
-  description: undefined,
-  sDate: undefined,
-  dDate: undefined,
-  owner: undefined,
 
   init() {
     this.initialize();
