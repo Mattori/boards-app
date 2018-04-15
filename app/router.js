@@ -30,7 +30,7 @@ Router.map(function() {
   this.route('dev-project', function() {
     this.route('new', {path: 'new/:project_id'});
   });
-  this.route('developer');
+  this.route('developer',{ path: 'developer/:developer_id' });
 });
 
 export default Router;
