@@ -8,11 +8,11 @@ export default DS.JSONSerializer.extend({
       return (resourceHash._id.$oid || resourceHash._id);
   },
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
-    if(requestType=='createRecord')
+    if(requestType == 'createRecord')
       return this._super(store, primaryModelClass, {}, id, requestType);
-    if(requestType=='updateRecord')
+    if(requestType == 'updateRecord')
       return this._super(store, primaryModelClass, {}, id, requestType);
-    if(requestType=='deleteRecord')
+    if(requestType == 'deleteRecord')
       return this._super(store, primaryModelClass, null, id, requestType);
     if (payload._embedded)
       return this._super(store, primaryModelClass, payload._embedded, id, requestType);

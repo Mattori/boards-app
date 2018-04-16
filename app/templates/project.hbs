@@ -3,9 +3,8 @@
   {{model.description}}
 </h2>
 <h3>Développeurs</h3>
-{{#link-to "dev-project.new" model.id class="ui button"}}
-  <i class="fa fa-plus"></i>
-  Ajouter un développeur au projet...
+{{#link-to "dev-project.new" model.id class="btn btn-warning"}}
+  <i class="fa fa-plus"></i> Ajouter un développeur au projet...
 {{/link-to}}
 <hr />
 <div class="table-responsive">
@@ -41,13 +40,14 @@
     </tbody>
   </table>
 </div>
-<h3 class="ui header">Stories</h3>
-{{#link-to "story.new" model.id class="ui button"}}
-  <i class="ui plus icon"></i>
-  Ajouter une Story au projet...
+<h3>Stories</h3>
+{{#link-to "story.new" model.id class="btn btn-primary ecart"}}
+  <i class="fa fa-plus"></i> Ajouter une Story au projet...
 {{/link-to}}
-{{#link-to "projects" class="ui button"}}<i class="caret square left icon"></i>Retour aux projets{{/link-to}}
-<div class="ui divider"></div>
+{{#link-to "projects" class="btn btn-default"}}
+  <i class="fa fa-arrow-left"></i> Retour aux projets
+{{/link-to}}
+<hr />
 <div class="ui middle aligned divided list">
   {{#each model.stories as |story|}}
   <div class="item">

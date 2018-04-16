@@ -1,8 +1,7 @@
-<h2 class="ui header">Tags</h2>
-{{#link-to "tags.new" class="ui button"}}
-  <i class="ui plus icon"></i>
-  Ajouter un tag...
+<h2>Tags</h2>
+{{#link-to "tags.new" class="btn"}}
+  <i class="fa fa-plus"></i> Ajouter un tag...
 {{/link-to}}
-  <div class="ui divider"></div>
+<hr />
 {{outlet}}
 {{#ui-table elements=model.tags fields=model.fields operations=model.operations emptyMessage="Aucun tag à afficher"}}{{/ui-table}}
