@@ -7,13 +7,13 @@ export default DS.Model.extend({
   startDate: DS.attr('date'),
   dueDate: DS.attr('date'),
   owner: DS.belongsTo('developer'),
-  developers: DS.hasMany('developer',{inverse:'ownProject'}),
+  developers: DS.hasMany('developer', {inverse:'ownProject'}),
   stories: DS.hasMany('story'),
-  sDate: computed('startDate',function(){
+  sDate: computed('startDate', function(){
     if(this.get('startDate'))
       return this.get('startDate').toLocaleDateString();
   }),
-  dDate: computed('dueDate',function(){
+  dDate: computed('dueDate', function(){
     if(this.get('dueDate'))
       return this.get('dueDate').toLocaleDateString();
   })

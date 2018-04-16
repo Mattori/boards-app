@@ -17,16 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="col-xs-8">
-          {{selecting-developer projects=model.projects}}
-        </td>
-        <td class="col-xs-4">
-          {{#bs-button class='btn btn-success btn-md'}}
-            <i class="fa fa-plus"></i> Ajouter
-          {{/bs-button}}
-        </td>
-      </tr>
+      {{selecting-developer projects=model.projects}}
       <tr>
         <td class="col-xs-4">
           {{model.owner.identity}}

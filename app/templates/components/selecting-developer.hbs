@@ -1,9 +1,16 @@
-{{#power-select
-  selected=owner
-  placeholder='Propriétaire...'
-  options=owners
-  onchange=(action (mut owner))
-  as |listOwners|
-}}
-  {{listOwners}}
-{{/power-select}}
+<td class="col-xs-8">
+  {{#power-select
+    selected=owner
+    placeholder='Propriétaire...'
+    options=owners
+    onchange=(action (mut owner))
+    as |listOwners|
+  }}
+    {{listOwners}}
+  {{/power-select}}
+</td>
+<td class="col-xs-4">
+  {{#bs-button class='btn btn-success btn-md'}}
+    <i class="fa fa-plus"></i> Ajouter
+  {{/bs-button}}
+</td>
