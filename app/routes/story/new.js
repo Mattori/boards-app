@@ -25,13 +25,13 @@ export default Route.extend({
     save(oldStory, story){
       let model = this.modelFor(this.routeName);
       let project = Ember.get(model, 'project');
-      story = this.get('store').createRecord('story', {code: story.code, description: story.description,project:project});
+      story = this.get('store').createRecord('story', {code: story.code, description: story.description, project: project});
       let idDeveloper = Ember.get(model, 'idDeveloper');
       let dev = Ember.get(model, 'developers').find(dev => dev.id == idDeveloper);
       story.set('developer', dev);
 
-      let idTags = Ember.get(model,'idTags');
-      let tags = Ember.get(model,'tags').filter((item) => idTags.includes(item.id));
+      let idTags = Ember.get(model, 'idTags');
+      let tags = Ember.get(model, 'tags').filter((item) => idTags.includes(item.id));
       story.set('tags', tags);
       let self = this;
       story.save().then(()=>{
@@ -43,8 +43,8 @@ export default Route.extend({
 
     cancel(){
       let model = this.modelFor(this.routeName);
-      let project = Ember.get(model,'project');
-      this.transitionTo("project",project);
+      let project = Ember.get(model, 'project');
+      this.transitionTo("project", project);
     },
 
     newTag(tag){

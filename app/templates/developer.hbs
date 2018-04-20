@@ -4,64 +4,7 @@
 
     <fieldset>
 
-      <legend><center><h2><b><i class="fa fa-folder-open"></i> Tableau de bord de {{model.identity}}</b></h2></center></legend><br>
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Prénom et nom :</label>
-        <div class="col-md-4">
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="fa fa-user"></i>
-            </span>
-            {{input type='text' class="form-control" value=model.identity placeholder='Prénom et nom...'}}
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Adresse e-mail</label>
-        <div class="col-md-4">
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="fa fa-envelope"></i>
-            </span>
-            {{input type='text' class="form-control" value=model.email placeholder='Adresse e-mail...'}}
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Login :</label>
-        <div class="col-md-4">
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="fa fa-user"></i>
-            </span>
-            {{input type='text' class="form-control" value=model.login placeholder='Login...'}}
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Mot de passe :</label>
-        <div class="col-md-4">
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="fa fa-lock"></i>
-            </span>
-            {{input type='password' class="form-control" value=model.password placeholder='Mot de passe...'}}
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4 control-label"></label>
-        <div class="col-md-4"><br>
-          {{#bs-button class='btn btn-success btn-md'}}
-            Valider <i class="fa fa-edit"></i>
-          {{/bs-button}}
-        </div>
-      </div>
+      {{developers/updating-developer developer=model.developer}}
 
       <h3>Projets en cours</h3>
       <hr />
@@ -76,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.projects as |proj|}}
+            {{#each model.developer.projects as |proj|}}
               <tr>
                 <td>
                   {{proj.name}}
