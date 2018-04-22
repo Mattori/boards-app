@@ -6,9 +6,10 @@ export default Route.extend({
   },
   actions:{
     save(oldValue,newValue){
-      let developer=this.get('store').createRecord('developer',JSON.parse(JSON.stringify(newValue)));
-      developer.save().then(()=>{this.transitionTo("developers");}).
-      catch((error)=>console.log(error));
+      let developer = this.get('store').createRecord('developer', JSON.parse(JSON.stringify(newValue)));
+      developer.save().then(()=>{
+        this.transitionTo("developers");
+      }).catch((error)=>console.log(error));
     },
     cancel(){
       this.transitionTo("developers");

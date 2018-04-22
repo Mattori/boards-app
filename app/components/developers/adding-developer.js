@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { isBlank } from '@ember/utils';
 
 export default Component.extend({
+  router: service(),
   notifications: service('notification-messages'),
   store: service(),
   tagName: 'tr',
@@ -72,6 +73,7 @@ export default Component.extend({
         this.set('email', '');
         this.set('login', '');
         this.set('password', '');
+        this.get('router').transitionTo('developers');
       }
     },
 
