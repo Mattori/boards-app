@@ -10,8 +10,8 @@ export default Component.extend({
 
   name: undefined,
   description: undefined,
-  sDate: undefined,
-  dDate: undefined,
+  startDate: undefined,
+  dueDate: undefined,
   owner: undefined,
 
   init() { // Fonction d'initialisation des arguments
@@ -45,8 +45,8 @@ export default Component.extend({
       let getId = record.get('id');
       let getName = record.get('name');
       let getDescription = record.get('description');
-      let getSDate = record.get('sDate');
-      let getDDate = record.get('dDate');
+      let getStartDate = record.get('startDate');
+      let getDueDate = record.get('dueDate');
       let getOwner = record.get('owner');
 
       let retour = false;

@@ -18,18 +18,24 @@
     </td>
     <td>
       {{#if proj.edit}}
+        {{input type='date' class='form-control' value=proj.startDate placeholder='Date de début...'}}
+        <!--
         <div class="field">
           {{ui-calendar type="date" date=model.newProject.startDate onChange=(action (mut model.newProject.startDate)) placeholder="Date de début"}}
         </div>
+      -->
       {{else}}
         {{proj.startDate}}
       {{/if}}
     </td>
     <td>
       {{#if proj.edit}}
+        {{input type='date' class='form-control' value=proj.dueDate placeholder='Date de fin...'}}
+        <!--
         <div class="field">
           {{ui-calendar startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin"}}
         </div>
+      -->
       {{else}}
         {{proj.dueDate}}
       {{/if}}
