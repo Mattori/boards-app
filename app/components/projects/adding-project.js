@@ -9,8 +9,14 @@ export default Component.extend({
 
   name: undefined,
   description: undefined,
-  sDate: undefined,
-  dDate: undefined,
+  startDate: (function(key, value) {
+    if (value) {
+      return this.set('date', new Date(value));
+    } else {
+      return (this.get('date') || new Date()).toISOString().substring(0, 10);
+    }
+  }).property('date'),
+  dueDate: undefined,
   owner: undefined,
 
   init() {
@@ -36,16 +42,16 @@ export default Component.extend({
 
       let getName = this.get('name');
       let getDescription = this.get('description');
-      let getSDate = this.get('sDate');
-      let getDDate = this.get('dDate');
+      let getStartDate = this.get('startDate');
+      let getDueDate = this.get('dueDate');
       let getOwner = this.get('owner');
       let getDevelopers = this.get('developers');
 
       let dataProject = {
         'name': getName,
         'description': getDescription,
-        'sDate': getSDate,
-        'dDate': getDDate,
+        'startDate': getStartDate,
+        'dueDate': getDueDate,
         'owner': getOwner,
       };
 
@@ -72,8 +78,7 @@ export default Component.extend({
 
         this.set('name', '');
         this.set('description', '');
-        this.set('sDate', '');
-        this.set('dDate', '');
+        this.set('dueDate', '');
         this.set('owner', '');
       }
     },

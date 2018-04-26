@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form class="well form-horizontal">
+  <form class="well form-horizontal" {{action "authenticate" on="submit"}}>
 
     <fieldset>
 
@@ -25,7 +25,7 @@
             <span class="input-group-addon">
               <i class="fa fa-lock"></i>
             </span>
-            {{input type='password' class="form-control" value=login placeholder='Mot de passe...'}}
+            {{input type='password' class="form-control" value=password placeholder='Mot de passe...'}}
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label"></label>
         <div class="col-md-4"><br>
-          <button type="submit" class="btn btn-success">Connexion <i class="fa fa-sign-in"></i></button>
+          <button type="submit" class="btn btn-success" {{action "login" login password}}>Connexion <i class="fa fa-sign-in"></i></button>
         </div>
       </div>
 

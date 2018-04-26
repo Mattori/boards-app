@@ -5,14 +5,20 @@
   {{input type='text' class='form-control' value=description placeholder='Description...'}}
 </td>
 <td>
+  {{input type='date' class='form-control' value=startDate placeholder='Date de début...'}}
+  <!--
   <div class="field">
     {{ui-calendar type="date" date=model.newProject.startDate onChange=(action (mut model.newProject.startDate)) placeholder="Date de début"}}
   </div>
+  -->
 </td>
 <td>
+  {{input type='date' class='form-control' value=dueDate placeholder='Date de fin...'}}
+  <!--
   <div class="field">
-    {{ui-calendar startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin"}}
+    {{ui-calendar startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin..."}}
   </div>
+  -->
 </td>
 <td>
   {{#power-select

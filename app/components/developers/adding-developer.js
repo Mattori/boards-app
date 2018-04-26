@@ -12,6 +12,7 @@ export default Component.extend({
   email: undefined,
   login: undefined,
   password: undefined,
+  passwordConfirm: undefined,
 
   init() {
     this.initialize();
@@ -57,6 +58,8 @@ export default Component.extend({
           htmlContent: true
         });
         console.log("Des données sont vides ! Échec de l'inscription !");
+      } else if (getPassword !== this.get('passwordConfirm')) {
+        console.log('Erreur !');
       } else {
         let newDev = store.createRecord(modelDev, dataDev);
 

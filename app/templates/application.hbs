@@ -28,11 +28,17 @@
             <i class="fa fa-edit"></i> S'inscrire
           {{/nav.link-to}}
         {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "connection"}}
-            <i class="fa fa-sign-in"></i> Se connecter
-          {{/nav.link-to}}
-        {{/nav.item}}
+        {{#if session.isAuthenticated}}
+          {{#nav.item onClick=(action "logout")}}
+            <i class="fa fa-sign-in"></i> Se déconnecter
+          {{/nav.item}}
+        {{else}}
+          {{#nav.item}}
+            {{#nav.link-to "connection"}}
+              <i class="fa fa-sign-in"></i> Se connecter
+            {{/nav.link-to}}
+          {{/nav.item}}
+        {{/if}}
       {{/navbar.nav}}
     {{/navbar.content}}
   {{/bs-navbar}}
