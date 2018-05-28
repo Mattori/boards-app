@@ -7,6 +7,9 @@ export default Component.extend({
   tagName: 'tbody',
 
   removeproj: undefined,
+  connectedIdentity: null,
+  devPOV: undefined,
+  typeProjet: undefined,
 
   name: undefined,
   description: undefined,
@@ -114,6 +117,13 @@ export default Component.extend({
       alert('deny ' + component.get('name'));
       return true;
     }
+  },
+
+  compareDate(date){
+    var nowY = moment().format('Y');
+    var nowM = moment().format('M');
+    var nowD = moment().format('D');
+    var dateconvert = date.split('-');
   },
 
   focusFollowingInput(e) { // Focus/Focalisation sur le select suivant

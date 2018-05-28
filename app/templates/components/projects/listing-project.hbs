@@ -1,77 +1,249 @@
 {{notification-container position="top"}}
-{{projects/adding-project}}
+
+{{#if (eq connectedIdentity devPOV)}} {{#if (eq typeProjet "Créations")}}
+  {{projects/adding-project}}
+{{/if}}{{/if}}
+
 {{#each projects as |proj|}}
-  <tr>
-    <td>
-      {{#if proj.edit}}
-        {{input type='text' class='form-control' value=proj.name placeholder='Nom...'}}
-      {{else}}
-        {{proj.name}}
+  {{#if (eq typeProjet "Créations")}}
+  {{#if (eq proj.owner.identity devPOV) }}
+    <tr>
+      <td>
+        {{#if proj.edit}}
+          {{input type='text' class='form-control' value=proj.name placeholder='Nom...'}}
+        {{else}}
+          {{proj.name}}
+        {{/if}}
+      </td>
+      <td>
+        {{#if proj.edit}}
+          {{input type='text' class='form-control' value=proj.description placeholder='Description...'}}
+        {{else}}
+          {{proj.description}}
+        {{/if}}
+      </td>
+      <td>
+        {{#if proj.edit}}
+          {{input type='date' class='form-control' value=proj.startDate placeholder='Date de début...'}}
+          <!--
+          <div class="field">
+            {{ui-calendar type="date" date=model.newProject.startDate onChange=(action (mut model.newProject.startDate)) placeholder="Date de début"}}
+          </div>
+        -->
+        {{else}}
+          {{proj.startDate}}
+        {{/if}}
+      </td>
+      <td>
+        {{#if proj.edit}}
+          {{input type='date' class='form-control' value=proj.dueDate placeholder='Date de fin...'}}
+          <!--
+          <div class="field">
+            {{ui-calendar startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin"}}
+          </div>
+        -->
+        {{else}}
+          {{proj.dueDate}}
+        {{/if}}
+      </td>
+      <td>
+        {{proj.owner.identity}}
+      </td>
+      <td>
+        {{#if proj.edit}}
+          {{#bs-button class='btn btn-success btn-circle btn-sm ecart' onClick=(action "validateEdit" proj)}}
+            <i class="fa fa-check"></i>
+          {{/bs-button}}
+          {{#bs-button class='btn btn-warning btn-circle btn-sm' onClick=(action "resetEdit" proj)}}
+            <i class="fa fa-undo"></i>
+          {{/bs-button}}
+        {{else}}
+          {{#link-to "project" proj.id class="btn btn-default btn-circle btn-sm"}}
+            <i class="fa fa-eye"></i>
+          {{/link-to}}
+        {{#if (eq typeProjet "Créations")}}{{#if (eq connectedIdentity devPOV)}}
+          {{#bs-button class='btn btn-primary btn-circle btn-sm ecart' onClick=(action "openEdit" proj)}}
+            <i class="fa fa-edit"></i>
+          {{/bs-button}}
+          {{#bs-button class='btn btn-danger btn-circle btn-sm' onClick=(action "openProj" proj)}}
+            <i class="fa fa-remove"></i>
+            {{#bs-popover visible=proj.popvalidate}}
+              Confirmez-vous la suppression de :<br />
+              {{proj.name}} ?
+              {{#bs-button class='btn btn-default btn-xs ecart' onClick=(action "closeProj" proj)}}
+                <i class="fa fa-undo"></i> Annuler
+              {{/bs-button}}
+              {{#bs-button class='btn btn-danger btn-xs' onClick=(action "removeRow" proj)}}
+                <i class="fa fa-check"></i> Confirmer
+              {{/bs-button}}
+            {{/bs-popover}}
+          {{/bs-button}}
+        {{/if}}{{/if}}{{/if}}
+      </td>
+    </tr>
+    {{/if}}
+
+  {{else if (eq typeProjet "Contributions")}}
+
+    {{#each proj.stories as |story|}}
+      {{#if (eq story.developer.identity devPOV)}}
+      {{#if (not-eq proj.owner.identity devPOV)}}
+        <tr>
+          <td>
+            {{#if proj.edit}}
+              {{input type='text' class='form-control' value=proj.name placeholder='Nom...'}}
+            {{else}}
+              {{proj.name}}
+            {{/if}}
+          </td>
+          <td>
+            {{#if proj.edit}}
+              {{input type='text' class='form-control' value=proj.description placeholder='Description...'}}
+            {{else}}
+              {{proj.description}}
+            {{/if}}
+          </td>
+          <td>
+            {{#if proj.edit}}
+              {{input type='date' class='form-control' value=proj.startDate placeholder='Date de début...'}}
+              <!--
+              <div class="field">
+                {{ui-calendar type="date" date=model.newProject.startDate onChange=(action (mut model.newProject.startDate)) placeholder="Date de début"}}
+              </div>
+            -->
+            {{else}}
+              {{proj.startDate}}
+            {{/if}}
+          </td>
+          <td>
+            {{#if proj.edit}}
+              {{input type='date' class='form-control' value=proj.dueDate placeholder='Date de fin...'}}
+              <!--
+              <div class="field">
+                {{ui-calendar startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin"}}
+              </div>
+            -->
+            {{else}}
+              {{proj.dueDate}}
+            {{/if}}
+          </td>
+          <td>
+            {{proj.owner.identity}}
+          </td>
+          <td>
+            {{#link-to "project" proj.id class="btn btn-default btn-circle btn-sm"}}
+              <i class="fa fa-eye"></i>
+            {{/link-to}}
+          </td>
+        </tr>
+        {{/if}}
       {{/if}}
-    </td>
-    <td>
-      {{#if proj.edit}}
-        {{input type='text' class='form-control' value=proj.description placeholder='Description...'}}
-      {{else}}
-        {{proj.description}}
+    {{/each}}
+
+  {{else if (eq typeProjet "Prioritaires")}}
+
+    {{#each proj.developers as |dev|}}
+      {{#if (eq dev.identity devPOV) }}
+        <tr>
+          <td>
+            {{#if proj.edit}}
+              {{input type='text' class='form-control' value=proj.name placeholder='Nom...'}}
+            {{else}}
+              {{proj.name}}
+            {{/if}}
+          </td>
+          <td>
+            {{#if proj.edit}}
+              {{input type='text' class='form-control' value=proj.description placeholder='Description...'}}
+            {{else}}
+              {{proj.description}}
+            {{/if}}
+          </td>
+          <td>
+            {{#if proj.edit}}
+              {{input type='date' class='form-control' value=proj.startDate placeholder='Date de début...'}}
+              <!--
+              <div class="field">
+                {{ui-calendar type="date" date=model.newProject.startDate onChange=(action (mut model.newProject.startDate)) placeholder="Date de début"}}
+              </div>
+            -->
+            {{else}}
+              {{proj.startDate}}
+            {{/if}}
+          </td>
+          <td>
+            {{#if proj.edit}}
+              {{input type='date' class='form-control' value=proj.dueDate placeholder='Date de fin...'}}
+              <!--
+              <div class="field">
+                {{ui-calendar startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin"}}
+              </div>
+            -->
+            {{else}}
+              {{proj.dueDate}}
+            {{/if}}
+          </td>
+          <td>
+            {{proj.owner.identity}}
+          </td>
+          <td>
+              {{#link-to "project" proj.id class="btn btn-default btn-circle btn-sm"}}
+                <i class="fa fa-eye"></i>
+              {{/link-to}}
+          </td>
+        </tr>
       {{/if}}
-    </td>
-    <td>
-      {{#if proj.edit}}
-        {{input type='date' class='form-control' value=proj.startDate placeholder='Date de début...'}}
-        <!--
-        <div class="field">
-          {{ui-calendar type="date" date=model.newProject.startDate onChange=(action (mut model.newProject.startDate)) placeholder="Date de début"}}
-        </div>
-      -->
-      {{else}}
-        {{proj.startDate}}
-      {{/if}}
-    </td>
-    <td>
-      {{#if proj.edit}}
-        {{input type='date' class='form-control' value=proj.dueDate placeholder='Date de fin...'}}
-        <!--
-        <div class="field">
-          {{ui-calendar startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin"}}
-        </div>
-      -->
-      {{else}}
-        {{proj.dueDate}}
-      {{/if}}
-    </td>
-    <td>
-      {{proj.owner.identity}}
-    </td>
-    <td>
-      {{#if proj.edit}}
-        {{#bs-button class='btn btn-success btn-circle btn-sm ecart' onClick=(action "validateEdit" proj)}}
-          <i class="fa fa-check"></i>
-        {{/bs-button}}
-        {{#bs-button class='btn btn-warning btn-circle btn-sm' onClick=(action "resetEdit" proj)}}
-          <i class="fa fa-undo"></i>
-        {{/bs-button}}
-      {{else}}
+    {{/each}}
+
+  {{else}}
+    <tr>
+      <td>
+        {{#if proj.edit}}
+          {{input type='text' class='form-control' value=proj.name placeholder='Nom...'}}
+        {{else}}
+          {{proj.name}}
+        {{/if}}
+      </td>
+      <td>
+        {{#if proj.edit}}
+          {{input type='text' class='form-control' value=proj.description placeholder='Description...'}}
+        {{else}}
+          {{proj.description}}
+        {{/if}}
+      </td>
+      <td>
+        {{#if proj.edit}}
+          {{input type='date' class='form-control' value=proj.startDate placeholder='Date de début...'}}
+          <!--
+          <div class="field">
+            {{ui-calendar type="date" date=model.newProject.startDate onChange=(action (mut model.newProject.startDate)) placeholder="Date de début"}}
+          </div>
+        -->
+        {{else}}
+          {{proj.startDate}}
+        {{/if}}
+      </td>
+      <td>
+        {{#if proj.edit}}
+          {{input type='date' class='form-control' value=proj.dueDate placeholder='Date de fin...'}}
+          <!--
+          <div class="field">
+            {{ui-calendar startDate=model.newProject.startDate type="date" date=model.newProject.dueDate onChange=(action (mut model.newProject.dueDate)) placeholder="Date de fin"}}
+          </div>
+        -->
+        {{else}}
+          {{proj.dueDate}}
+        {{/if}}
+      </td>
+      <td>
+        {{proj.owner.identity}}
+      </td>
+      <td>
         {{#link-to "project" proj.id class="btn btn-default btn-circle btn-sm"}}
           <i class="fa fa-eye"></i>
         {{/link-to}}
-        {{#bs-button class='btn btn-primary btn-circle btn-sm ecart' onClick=(action "openEdit" proj)}}
-          <i class="fa fa-edit"></i>
-        {{/bs-button}}
-        {{#bs-button class='btn btn-danger btn-circle btn-sm' onClick=(action "openProj" proj)}}
-          <i class="fa fa-remove"></i>
-          {{#bs-popover visible=proj.popvalidate}}
-            Confirmez-vous la suppression de :<br />
-            {{proj.name}} ?
-            {{#bs-button class='btn btn-default btn-xs ecart' onClick=(action "closeProj" proj)}}
-              <i class="fa fa-undo"></i> Annuler
-            {{/bs-button}}
-            {{#bs-button class='btn btn-danger btn-xs' onClick=(action "removeRow" proj)}}
-              <i class="fa fa-check"></i> Confirmer
-            {{/bs-button}}
-          {{/bs-popover}}
-        {{/bs-button}}
-      {{/if}}
-    </td>
-  </tr>
+      </td>
+    </tr>
+  {{/if}}
+
 {{/each}}

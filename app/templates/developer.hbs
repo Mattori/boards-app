@@ -1,43 +1,72 @@
 <div class="container">
-
   <form class="well form-horizontal">
-
     <fieldset>
+      <legend><center><h1><b><i class="fa fa-folder-open"></i> Tableau de bord de {{model.developer.identity}}</b></h1><br></center></legend>
 
-      {{developers/updating-developer developer=model.developer}}
+      {{#bs-tab as |tab|}}
+        {{#tab.pane title="Profil"}}<br>
+          {{#if (eq connectedIdentity model.developer.developer_id)}}
+            {{developers/updating-developer developer=model.developer}}
+          {{else}}
+            {{developers/noupdating-developer developer=model.developer}}
+          {{/if}}
+        {{/tab.pane}}
 
-      <h3>Projets en cours</h3>
-      <hr />
-      <div class="table-responsive">
-      	<table class="table table-hover table-bordered">
-          <thead>
-            <tr>
-              <th class="col-xs-3">Nom</th>
-              <th class="col-xs-3">Description</th>
-              <th class="col-xs-3">Date de début</th>
-              <th class="col-xs-3">Date butoire</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.developer.projects as |proj|}}
+        {{#tab.pane title="Projets Crées"}}<br>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead>
               <tr>
-                <td>
-                  {{proj.name}}
-                </td>
-                <td>
-                  {{proj.description}}
-                </td>
-                <td>
-                  {{proj.startDate}}
-                </td>
-                <td>
-                  {{proj.dueDate}}
-                </td>
+                <th class="col-xs-2">Nom</th>
+                <th class="col-xs-2">Description</th>
+                <th class="col-xs-2">Date de début</th>
+                <th class="col-xs-2">Date butoire</th>
+                <th class="col-xs-2">Propriétaire</th>
+                <th class="col-xs-2"></th>
               </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            {{projects/listing-project projects=model.projects connectedIdentity=model.connectedIdentity devPOV=model.developer.identity typeProjet="Créations" }}
+          </table>
+        </div>
+        {{/tab.pane}}
+
+        {{#tab.pane title="Projets contribués"}}<br>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th class="col-xs-2">Nom</th>
+                <th class="col-xs-2">Description</th>
+                <th class="col-xs-2">Date de début</th>
+                <th class="col-xs-2">Date butoire</th>
+                <th class="col-xs-2">Propriétaire</th>
+                <th class="col-xs-2"></th>
+              </tr>
+            </thead>
+            {{projects/listing-project projects=model.projects connectedIdentity=model.model.connectedIdentity devPOV=model.developer.identity typeProjet="Contributions" }}
+          </table>
+        </div>
+        {{/tab.pane}}
+
+        {{#tab.pane title="Projets prioritaires"}}<br>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th class="col-xs-2">Nom</th>
+                <th class="col-xs-2">Description</th>
+                <th class="col-xs-2">Date de début</th>
+                <th class="col-xs-2">Date butoire</th>
+                <th class="col-xs-2">Propriétaire</th>
+                <th class="col-xs-2"></th>
+              </tr>
+            </thead>
+            {{projects/listing-project projects=model.projects connectedIdentity=model.connectedIdentity devPOV=model.developer.identity typeProjet="Prioritaires" }}
+          </table>
+        </div>
+        {{/tab.pane}}
+      {{/bs-tab}}
+
 
     </fieldset>
   </form>

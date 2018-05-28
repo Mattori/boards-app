@@ -11,9 +11,11 @@ export default Route.extend({
       developers: this.get('store').findAll('developer'),
       idDeveloper: [],
       idTags: [],
+      idStep: [],
       tags: this.get('store').findAll('tag'),
       colors: ['black','blue','green','orange','pink','purple','red','teal','yellow','positive','negative'],
-      tag: EmberObject.create({})
+      tag: EmberObject.create({}),
+      step: EmberObject.create({})
     });
   },
 
@@ -33,6 +35,8 @@ export default Route.extend({
       let idTags = Ember.get(model, 'idTags');
       let tags = Ember.get(model, 'tags').filter((item) => idTags.includes(item.id));
       story.set('tags', tags);
+      let step = Ember.get(model, 'step').filter((item) => idTags.includes(item.id));
+      story.set('step', step);
       let self = this;
       story.save().then(()=>{
         project.save().then(()=>{

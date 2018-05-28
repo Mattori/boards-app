@@ -1,70 +1,96 @@
 <h2>
-  <i class="fa fa-folder-open"></i> {{model.name}}
-  {{model.description}}
+  <i class="fa fa-folder-open"></i> Projet {{model.name}}
 </h2>
-<h3>Développeurs</h3>
-{{#link-to "dev-project.new" model.id class="btn btn-warning"}}
-  <i class="fa fa-plus"></i> Ajouter un développeur au projet...
-{{/link-to}}
-<hr />
-<div class="table-responsive">
-	<table class="table table-hover table-bordered">
-    <thead>
-      <tr>
-        <th class="col-xs-4">Identité</th>
-        <th class="col-xs-4">Email</th>
-        <th class="col-xs-4"></th>
-      </tr>
-    </thead>
-    <tbody>
-      {{selecting-developer projects=model.projects}}
-      <tr>
-        <td class="col-xs-4">
-          {{model.owner.identity}}
-        </td>
-        <td class="col-xs-4">
-          {{model.owner.email}}
-        </td>
-        <td class="col-xs-4">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<h3>Stories</h3>
-{{#link-to "story.new" model.id class="btn btn-primary ecart"}}
-  <i class="fa fa-plus"></i> Ajouter une Story au projet...
-{{/link-to}}
-{{#link-to "projects" class="btn btn-default"}}
-  <i class="fa fa-arrow-left"></i> Retour aux projets
-{{/link-to}}
-<hr />
-<div class="ui middle aligned divided list">
-  {{#each model.stories as |story|}}
-  <div class="item">
-    <div class="right floated content">
-      <div class="ui left labeled button" tabindex="0">
-        <a class="ui basic right pointing label">
-          {{story.developer.identity}}
-        </a>
-        <div class="ui button">
-          <i class="user icon"></i> Mettre à jour...
+
+{{#bs-tab as |tab|}}
+  {{#tab.pane title="Présentation"}}<br>
+    Description: {{model.description}}<br>
+    Créateur du projet: {{model.owner.identity}}<br>
+    Date de début: {{model.startDate}}<br>
+    Date de fin: {{model.dueDate}}<br>
+  {{/tab.pane}}
+
+  {{#tab.pane title="Développeurs"}}<br>
+    <hr />
+    <div class="table-responsive">
+    	<table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th class="col-xs-4">Identité</th>
+            <th class="col-xs-4">Email</th>
+            <th class="col-xs-4">Nombre de stories</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-xs-4">
+              {{model.owner.identity}}
+            </td>
+            <td class="col-xs-4">
+              {{model.owner.email}}
+            </td>
+            <td class="col-xs-4">
+            </td>
+          </tr>
+          {{#each model.stories as |story|}}
+            <tr>
+              <td class="col-xs-4">
+                {{story.developer.identity}}
+              </td>
+              <td class="col-xs-4">
+                {{story.developer.email}}
+              </td>
+              <td class="col-xs-4">
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{/tab.pane}}
+
+  {{#tab.pane title="Stories"}}<br>
+    {{#link-to "story.new" model.id class="btn btn-primary ecart"}}
+      <i class="fa fa-plus"></i> Ajouter une Story au projet...
+    {{/link-to}}
+    {{#link-to "projects" class="btn btn-default"}}
+      <i class="fa fa-arrow-left"></i> Retour aux projets
+    {{/link-to}}
+    <hr />
+
+    <div class="ui middle aligned divided list">
+      {{#each model.stories as |story|}}
+      <div class="item">
+        <div class="right floated content">
+          <div class="ui left labeled button" tabindex="0">
+            <a class="ui basic right pointing label">
+              {{story.developer.identity}}
+            </a>
+            <a class="ui basic right pointing label">
+              {{story.step.title}}
+            </a>
+          </div>
+        </div>
+        <i class="big file middle aligned icon"></i>
+        <div class="content">
+          <div class="header">
+            {{story.code}}
+          </div>
+          <div class="description">
+            {{story.description}}
+            {{#each story.tags as |tag|}}
+
+              <a class="ui {{tag.color}} label">{{tag.title}}</a>
+            {{/each}}
+          </div>
         </div>
       </div>
+     {{/each}}
     </div>
-    <i class="big file middle aligned icon"></i>
-    <div class="content">
-      <div class="header">
-        {{story.code}}
-      </div>
-      <div class="description">
-        {{story.description}}
-        {{#each story.tags as |tag|}}
-          <a class="ui {{tag.color}} label">{{tag.title}}</a>
-        {{/each}}
-      </div>
-    </div>
-  </div>
- {{/each}}
-</div>
+  {{/tab.pane}}
+{{/bs-tab}}
+
+
+
+
 {{outlet}}
